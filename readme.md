@@ -22,4 +22,4 @@
 - **TIPO_DE_SALA**: El tipo de sala a reservar, **_sensible a mayúsculas_**. Puede ser <_Digital, VOSE_>
 - **FECHA**: La fecha de la reserva tal y como aparece en cinesa.es, en el formato **_DD/MM_** eg. _30/12_
 - **HORA**: La hora de la reserva tal y como aparece en cinesa.es, en el formato **_hh:mm_** eg. _08:15_
-- **INSTANCIAS**: El número de trabajadores concurrentes. Un mayor número de instancias mejora el rendimiento siempre y cuando su PC pueda con la carga; de lo contrario el rendimiento del programa se verá afectado negativamente. **_Recomendado: 3_**
+- **INSTANCIAS**: El número de trabajadores concurrentes. Un mayor número de instancias mejora el rendimiento siempre y cuando su PC pueda con la carga; de lo contrario el rendimiento del programa se verá afectado negativamente. **_Recomendado: 1_**

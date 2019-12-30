@@ -4,7 +4,7 @@ function waitFor(millis) {
   return new Promise(resolve => setTimeout(resolve, millis));
 }
 
-const instances = process.env.INSTANCIAS || 3;
+const instances = process.env.INSTANCIAS || 1;
 
 (async function main() {
   fork("./worker.js");
