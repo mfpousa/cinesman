@@ -87,7 +87,6 @@ async function logEmptySeats() {
     page.waitForSelector(".butaca_2"),
     page.waitForSelector(".butaca_1")
   ]);
-  await waitFor(1000);
   const occupiedSeats = await getOccupiedSeats();
   const emptySeats = await getEmptySeats();
   const selectedSeats = await getSelectedSeats();
