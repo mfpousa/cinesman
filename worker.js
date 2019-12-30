@@ -18,12 +18,20 @@ async function hack() {
     await switchPage(1);
     await clickText("Continuar y crear cuenta después");
 
-    await waitFor(1000);
-    await increaseSeatsNumber(9);
+    await waitFor(500);
+    await increaseSeatsNumber(1);
     await clickText("Elegir butacas");
+    await waitFor(1000);
+    const emptySeats = await getEmptySeats();
+    if (emptySeats > 0) {
+      await clickText("Atrás");
+      await waitFor(500);
+      await increaseSeatsNumber(emptySeats);
+      await clickText("Elegir butacas");
+    }
 
     await logEmptySeats();
-    await waitFor(1000);
+    await waitFor(2000);
     await page.close();
   }
 }
@@ -83,7 +91,7 @@ async function logEmptySeats() {
   const emptySeats = await getEmptySeats();
   const selectedSeats = await getSelectedSeats();
   console.log(
-    `[${emptySeats + selectedSeats}] butacas libres de [${emptySeats +
+    `[${emptySeats}] butacas libres de [${emptySeats +
       selectedSeats +
       occupiedSeats}]`
   );
