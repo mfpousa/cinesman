@@ -9,11 +9,9 @@ const {
   waitFor,
   closeTab,
   setConfig,
-  text,
   setViewPort
 } = require("taiko");
 
-const seatsToReserve = Number.parseInt(process.env.ASIENTOS) || 9;
 const movieTitle = process.env.PELICULA || "Star Wars: Episodio IX - El Ascenso de Skywalker";
 const roomType = process.env.TIPO_DE_SALA || "VOSE";
 const reservationDate = process.env.FECHA || "30/12";
@@ -27,21 +25,10 @@ async function hack() {
     await click("Continuar y crear cuenta después");
 
     await waitFor(1000);
-    await setSeatsNumber(seatsToReserve);
+    await increaseSeatsNumber(9);
     await click("Elegir butacas");
 
-    const roomFull = await text("Lo sentimos, ya no quedan butacas").exists();
-    if (roomFull) {
-      console.log("La sala está llena. Esperando a que caduquen las butacas bloqueadas");
-    } else {
-      let emptySeats = await getEmptySeats();
-      await click("Atrás");
-      if (emptySeats > 0) {
-        await setSeatsNumber(Math.min(emptySeats, 8));
-        await click("Elegir butacas");
-      }
-      await logEmptySeats(seatsToReserve);
-    }
+    await logEmptySeats();
     await closeTab();
   }
 }
@@ -50,7 +37,7 @@ async function logEmptySeats() {
   const occupiedSeats = await getOccupiedSeats();
   const emptySeats = await getEmptySeats();
   const selectedSeats = await getSelectedSeats();
-  console.log(`[${emptySeats}] butacas libres de [${emptySeats + selectedSeats + occupiedSeats}]`);
+  console.log(`[${emptySeats + selectedSeats}] butacas libres de [${emptySeats + selectedSeats + occupiedSeats}]`);
 }
 
 async function setReservationDate() {
@@ -58,7 +45,7 @@ async function setReservationDate() {
   await click(reservationDate);
 }
 
-async function setSeatsNumber(number) {
+async function increaseSeatsNumber(number) {
   await click($('//*[@id="accordion"]/div[1]/div/div[1]'), { clickCount: number });
 }
 

@@ -18,7 +18,6 @@
 
 ### Puede cambiar los diferentes parámetros del programa cambiando el valor de ciertas variables de entorno:
 
-- **ASIENTOS**: El número de asientos para su reserva
 - **PELICULA**: El nombre exacto de la película a reservar tal y como aparece en la página de cinesa.es
 - **TIPO_DE_SALA**: El tipo de sala a reservar, **_sensible a mayúsculas_**. Puede ser <_Digital, VOSE_>
 - **FECHA**: La fecha de la reserva tal y como aparece en cinesa.es, en el formato **_DD/MM_** eg. _30/12_
