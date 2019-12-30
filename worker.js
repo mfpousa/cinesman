@@ -123,10 +123,10 @@ async function getSelectedSeats() {
 
 async function recursiveStart() {
   try {
-    browser = await puppeteer.launch({ headless: false });
+    browser = await puppeteer.launch({ headless: true });
     await hack();
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     await browser.close();
     return await recursiveStart();
   }
