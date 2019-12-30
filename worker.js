@@ -87,6 +87,7 @@ async function logEmptySeats() {
     page.waitForSelector(".butaca_2"),
     page.waitForSelector(".butaca_1")
   ]);
+  await waitFor(1000);
   const occupiedSeats = await getOccupiedSeats();
   const emptySeats = await getEmptySeats();
   const selectedSeats = await getSelectedSeats();
@@ -131,7 +132,7 @@ async function getSelectedSeats() {
 
 async function recursiveStart() {
   try {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: false });
     await hack();
   } catch (e) {
     // console.error(e);
