@@ -10,15 +10,14 @@ const {
   closeTab,
   setConfig,
   text,
-  setViewPort,
-  screenshot
+  setViewPort
 } = require("taiko");
 
-const seatsToReserve = 9;
-const movieTitle = "Star Wars: Episodio IX - El Ascenso de Skywalker";
-const roomType = "VOSE";
-const reservationDate = "30/12";
-const reservationTime = "21:20";
+const seatsToReserve = process.env.ASIENTOS || 9;
+const movieTitle = process.env.PELICULA || "Star Wars: Episodio IX - El Ascenso de Skywalker";
+const roomType = process.env.TIPO_DE_SALA || "VOSE";
+const reservationDate = process.env.FECHA || "30/12";
+const reservationTime = process.env.HORA || "21:20";
 
 async function hack() {
   while (true) {
@@ -55,7 +54,6 @@ async function recursiveStart() {
     await setViewPort({ height: 10000, width: 0 });
     await hack();
   } catch (e) {
-    console.error(e);
     await closeBrowser();
     return await recursiveStart();
   }
